@@ -20,15 +20,15 @@ describe("GitHub EndPoint Tests", function() {
     it("listBranches returns list branches", async function() {
         
       let user  = await github.getUser();
-      let repos = await github.listBranches(user,"HW4-345");
-      expect(repos).to.be.an('array').that.have.nested.property("[0].name").equals("master");
+      let repos = await github.listBranches(user,"MBSE-Homework-3");
+      expect(repos).to.be.an('array').that.have.nested.property("[0].name").equals("main");
 
     });
 
     it("createRepo successfully creates repo", async function() {
         
       let user  = await github.getUser();
-      let status = await github.createRepo(user, "test-HW4-345");
+      let status = await github.createRepo("test-HW3-repo");
       expect(status).to.equal(201);
 
     });
@@ -37,7 +37,7 @@ describe("GitHub EndPoint Tests", function() {
     it("createIssue successfully creates issue", async function() {
       
       let user  = await github.getUser();
-      let status = await github.createIssue(user, "HW4-345", "issue name", "issue body");
+      let status = await github.createIssue(user, "test-HW3-repo", "issue name", "issue body");
       expect(status).to.equal(201);
 
     });
@@ -45,7 +45,7 @@ describe("GitHub EndPoint Tests", function() {
     it("enableWikiSupport successfully enables wiki support", async function() {
       
       let user  = await github.getUser();
-      let response = await github.enableWikiSupport(user, "HW4-345");
+      let response = await github.enableWikiSupport(user, "test-HW3-repo");
 
       expect(response).to.have.property('has_wiki');
       expect(response.has_wiki).to.equal(true);
